@@ -1,8 +1,4 @@
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- Link to schema: https://app.quickdatabasediagrams.com/#/d/MFYof3
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
-
+﻿
 CREATE TABLE "user" (
     "userID" serial   NOT NULL,
     "APIKey" int   NOT NULL,
@@ -13,7 +9,7 @@ CREATE TABLE "user" (
     "State" string(2)   NOT NULL,
     CONSTRAINT "pk_user" PRIMARY KEY (
         "userID"
-     )
+    )
 );
 
 CREATE TABLE "parks" (
@@ -24,7 +20,7 @@ CREATE TABLE "parks" (
     "activities" int   NOT NULL,
     CONSTRAINT "pk_parks" PRIMARY KEY (
         "parksid"
-     )
+    )
 );
 
 CREATE TABLE "activities" (
@@ -34,17 +30,16 @@ CREATE TABLE "activities" (
     "parksid" int   NOT NULL,
     CONSTRAINT "pk_activities" PRIMARY KEY (
         "activityID"
-     )
+    )
 );
 
 CREATE TABLE "favorites" (
     "faveID" serial   NOT NULL,
     "userID" int   NOT NULL,
     "parksid" int   NOT NULL,
-    "userId" INTEGER   NOT NULL,
     CONSTRAINT "pk_favorites" PRIMARY KEY (
         "faveID"
-     )
+    )
 );
 
 ALTER TABLE "activities" ADD CONSTRAINT "fk_activities_parksid" FOREIGN KEY("parksid")
