@@ -37,7 +37,7 @@ class Favorites(db.Model):
     """users favorites"""
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    Name = db.Column(db.Text, nullable = False)\
+    Name = db.Column(db.Text, nullable = False)
     park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
 
 
