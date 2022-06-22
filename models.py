@@ -1,14 +1,9 @@
 """Models for findyourfun app."""
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
 
 db = SQLAlchemy()
 
-def connect_db(app):
-    """connect db function to psql"""
-    db.app = app
-    db.init_app(app)
 class User(db.Model): 
     """User"""
     __tablename__ = 'users'
@@ -23,8 +18,8 @@ class User(db.Model):
 
 class Parks(db.Model):
     """Parks"""
-    __tablename__ = "Parks"
-    id = db.Column(db.Integer, primary_key =True)
+    __tablename__ = "parks"
+    id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text, nullable=False)
     url = db.Column(db.Text)
@@ -32,17 +27,21 @@ class Parks(db.Model):
     
 class Activities(db.Model): 
     """Activities sorted by Park"""
-    __tablename__ = "Activities at each Park"
+    __tablename__ = "activities"
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.Text, nullable=False)
     location = db.Column(db.Text, nullable=False)
-    Parks.id = db.Column(db.Text)
+    park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
     
 class Favorites(db.Model):
     """users favorites"""
     id = db.Column(db.Integer, primary_key=True)
-    User.id = db.Column(db.Integer, ForeignKey)
-    Name = db.Column(db.Text, nullable = False)
-    Parks.id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    Name = db.Column(db.Text, nullable = False)\
+    park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
 
 
+def connect_db(app):
+    """connect db function to psql"""
+    db.app = app
+    db.init_app(app)
