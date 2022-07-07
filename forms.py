@@ -11,7 +11,6 @@ class AddUserForm(FlaskForm):
     state = SelectField('Select Your State', choices=[
         ('AL','Alabama'),
         ('AK','Alaska'),
-        ('AS','American Samoa'),
         ('AZ','Arizona'),
         ('AR','Arkansas'),
         ('CA','California'),
@@ -64,5 +63,5 @@ class AddUserForm(FlaskForm):
         ('WA','Washington'),
         ('WV','West Virginia'),
         ('WI','Wisconsin'),
-        ('WY','Wyoming')  ])
+        ('WY','Wyoming')])
     

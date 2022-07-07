@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>New User Sign Up</h2>
+
+<p>Thanks for visiting Find Your Fun. <br>
+The one stop for all of your outdoor adventure needs and wants.<br>
+Before we get started, lets find out more about you! </p>
+
+<form id="user-add-form" method="POST">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+
+    {% for field in form
+        if field.widget.input_type != 'hidden' %}
+
+    <p>
+        {{ field.label }}
+        {{ field }}
+
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    {% endfor %}
+
+    <button action="/" type="submit">Submit</button>
+</form>
+
+{% endblock %}

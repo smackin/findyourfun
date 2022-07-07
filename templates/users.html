@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Welcome</h1>
+
+<p>Thanks for visiting Find Your Fun. The one stop for all of your outdoor adventure needs and wants. Before we get started, lets find out more about you! </p>
+
+<body>
+    <div class="container">
+    <h1 class="display-1">FYF Users</h1>
+    <table class="table table-striped ">
+        <thead class="thead-dark">
+        <th>Employee</th>
+        <th>Department</th>
+        <th>Phone</th>
+        </thead>
+        <tbody>
+        {% for emp in emps %}
+        <tr>
+            <td>{{newusr.name}} <a class="btn btn-sm btn-info" href="/employees/{{emp.id}}/edit">Edit</a></td>
+            <td>{{emp.dept.dept_name}}</td>
+            {% if emp.dept.phone %}
+            <td>{{emp.dept.phone}}</td>
+            {% else %}
+            <td class="text-danger">NO PHONE</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="/users/new" class="btn btn-success">Add Employee</a>
+    </div>
+</body>
+
+{% endblock %}

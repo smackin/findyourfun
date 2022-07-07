@@ -8,11 +8,10 @@ class User(db.Model):
     """User"""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.Text, nullable=False)
+    name = db.Column(db.Text, nullable=False)
     username = db.Column(db.Text, nullable=False ,unique=True) 
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.Text, nullable=False ,unique=True)
-    APIKey = db.Column(db.Integer, nullable=False)
     state = db.Column(db.String(2), nullable=False)
 
 

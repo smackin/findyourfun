@@ -6,7 +6,7 @@ CREATE TABLE "user" (
     "UserName" string   NOT NULL,
     "Password" string   NOT NULL,
     "email" string   NOT NULL,
-    "State" string(2)   NOT NULL,
+    "State" select,   NOT NULL,
     CONSTRAINT "pk_user" PRIMARY KEY (
         "userID"
     )
