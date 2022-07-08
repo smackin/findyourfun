@@ -11,3 +11,5 @@ data = res.json()
 
 for result in data['data']:
     print(result['name'], result['id'])
+    
+    
