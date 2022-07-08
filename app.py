@@ -45,6 +45,13 @@ def add_user():
         return render_template('add_user_form.html', form=form)
     
 
+@app.route('/users/home')
+def show_user_home():
+    """displays users homepage"""
+    
+    
+    
+
     
 # @app.route('user/login', methods=['GET', 'POST'])
 # def login_user():

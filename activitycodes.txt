@@ -1,0 +1,32 @@
+ {
+            "id": "A59947B7-3376-49B4-AD02-C0423E08C5F7",
+            "name": "Camping"
+        },
+   {
+            "id": "AE42B46C-E4B7-4889-A122-08FE180371AE",
+            "name": "Fishing"
+        },
+     {
+            "id": "1DFACD97-1B9C-4F5A-80F2-05593604799E",
+            "name": "Food"
+        },
+        {
+            "id": "BFF8C027-7C8F-480B-A5F8-CD8CE490BFBA",
+            "name": "Hiking"
+        },
+        {
+            "id": "0B685688-3405-4E2A-ABBA-E3069492EC50",
+            "name": "Wildlife Watching"
+        }
+        {
+            "id": "7779241F-A70B-49BC-86F0-829AE332C708",
+            "name": "Playground"
+        },
+        {
+            "id": "24380E3F-AD9D-4E38-BF13-C8EEB21893E7",
+            "name": "Shopping"
+        },
+
+
+      Camping,Playground, Wildlife,Shopping, Hiking, Food, Fishing   
+      A59947B7337649B4AD02C0423E08C5F7, 7779241FA70B49BC86F0829AE332C7080, 0B68568834054E2AABBAE3069492EC50, 24380E3FAD9D4E38BF13C8EEB21893E7, BFF8C0277C8F80BA5F8CD8CE490BFBA, 1DFACD971B9C4F5A80F205593604799E, AE42B46C-E4B74889A12208FE180371AE
