@@ -1,9 +1,10 @@
 from crypt import methods
-from flask import Flask, render_template, flash ,get_flashed_messages, redirect
+from flask import Flask, render_template, flash ,get_flashed_messages, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User
 from flask_debugtoolbar import DebugToolbarExtension
-from forms import AddUserForm
+from forms import RegisterForm, UserLogInForm
+
 
 app = Flask(__name__)
 
@@ -21,10 +22,20 @@ def home_page():
     """displayes home page"""
     return render_template('base.html')
 
-@app.route('/users/new', methods=['GET', 'POST'])
+@app.route('/users', methods=['GET', 'POST'])
+def login_user():
+    """user login form"""
+    form = UserLogInForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+    return redirect('')
+
+@app.route('/register', methods=['GET', 'POST'])
 def add_user(): 
-    """Add user"""
-    form = AddUserForm()
+    """Register user - display form and handle form submission"""
+    form = RegisterForm()
+    
     if form.validate_on_submit():
         name = form.name.data
         username = form.username.data
@@ -32,23 +43,22 @@ def add_user():
         email = form.email.data
         state = form.state.data
         
-        nwusr =  User(name=name, 
-                    username=username,
-                    password=password, 
-                    email=email, 
-                    state=state)
-        db.session.add(nwusr)
+        user=  User.register(name, username, password, email, state)
+        db.session.add(user)
         db.session.commit()
+        
+        session['user_id'] = user.id
         # flash (f'Created new User {username}, welcome {name}')
         return redirect('/')
     else:
-        return render_template('add_user_form.html', form=form)
+        return render_template('register.html', form=form)
     
 
-@app.route('/users/home')
-def show_user_home():
+@app.route('/users')
+def show_users():
     """displays users homepage"""
     
+    return render_template('user_home.html')
     
     
 

@@ -1,11 +1,14 @@
 """Models for findyourfun app."""
 
 from flask_sqlalchemy import SQLAlchemy
+import bcrypt
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 class User(db.Model): 
-    """User"""
+    """Site User"""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
@@ -13,6 +16,18 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False)
     email = db.Column(db.Text, nullable=False ,unique=True)
     state = db.Column(db.String(2), nullable=False)
+    
+    #register method
+    @classmethod
+    def register(cls, name, username, password, email, state):
+        """register user with hashed pw & return user"""
+    
+        hashed = bcrypt.generate_password_hash(password)
+        hashed_utf8 = hashed.decode("utf8")
+        
+        #return instance of user with name, un, hashedpw, email, state
+        return cls(name=name, username=username, password=hashed_utf8, email=email, state=state)
+    #end_register_user
 
 
 class Parks(db.Model):
