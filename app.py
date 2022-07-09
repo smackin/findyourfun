@@ -3,8 +3,7 @@ from flask import Flask, render_template, flash ,get_flashed_messages, redirect,
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User
 from flask_debugtoolbar import DebugToolbarExtension
-from forms import RegisterForm, UserLogInForm
-
+from forms import RegisterForm, LogInForm
 
 app = Flask(__name__)
 
@@ -20,16 +19,28 @@ connect_db(app)
 @app.route('/')
 def home_page():
     """displayes home page"""
-    return render_template('base.html')
+    return render_template('index.html')
 
-@app.route('/users', methods=['GET', 'POST'])
-def login_user():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     """user login form"""
-    form = UserLogInForm()
+    form = LogInForm()
+    
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-    return redirect('')
+        
+        #authenticate will return a user or False. 
+        user = User.authenticate(username, password)
+        
+        if user: 
+            session['user_id'] = user.id #keep user logged in
+        return redirect('/user')
+    
+    else:
+        form.username.errors = ["incorrect name/ password"]    
+    
+    return render_template('login.html', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def add_user(): 
@@ -49,18 +60,29 @@ def add_user():
         
         session['user_id'] = user.id
         # flash (f'Created new User {username}, welcome {name}')
-        return redirect('/')
+        return redirect('/user')
     else:
         return render_template('register.html', form=form)
     
 
-@app.route('/users')
-def show_users():
-    """displays users homepage"""
+@app.route('/user')
+def userpage():
+    """displays users homepage only if user in session"""
     
-    return render_template('user_home.html')
+    if "user_id" not in session:
+        flash("You must be logged in to access", "danger")    
+        return redirect('/login')
     
+    else:
+        return render_template("user.html")
+
+@app.route('/logout')
+def logout(): 
+    """log User out and redirects to homepage. """
     
+    session.pop("user_id")
+    
+    return redirect('/')
 
     
 # @app.route('user/login', methods=['GET', 'POST'])

@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Welcome</h1>
+<h1>Hey there!</h1>
 
-<p>Thanks for visiting Find Your Fun. The one stop for all of your outdoor adventure needs and wants. Before we get started, lets find out more about you! </p>
-
-<form id="user-add-form" method="POST">
+<p> We're so glad you're back! Login below. </p>
+<form id="login_form" method="POST">
     {{ form.hidden_tag() }} <!--add type=hidden form fields -->
 
     {% for field in form
@@ -21,7 +20,7 @@
 
     {% endfor %}
 
-    <button action="/" type="submit">Submit</button>
+    <button action="/user" type="submit">Submit</button>
 </form>
 
 {% endblock %}

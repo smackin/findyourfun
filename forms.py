@@ -9,7 +9,7 @@ states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
         'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
         'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
-class UserLogInForm(FlaskForm):
+class LogInForm(FlaskForm):
     """form to log in user"""
     username = StringField("username", validators=[InputRequired()])
     password = PasswordField("password")

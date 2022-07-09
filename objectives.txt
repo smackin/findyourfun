@@ -1,0 +1,30 @@
+todo: next 
+A) ROUTES 
+	1) Register/ Authenticate Route. -- done. 
+	   a) Register new User with form 
+	   b) commit to db
+	   c) hash password to store to db. 
+	   d) authenticate user with salted password. 
+	   e) set up class methods in the User model in order to keep view functions clean. 
+	
+	2) Login Route. 
+	   a) route to display log in form and handle form submission. 
+	      i. username and password validation 
+		  ii. render template to show user home page
+	   b) Store user id in session in order to access User Features. 
+	   c) 
+
+
+B)  API (figure out paths to display (API) )
+	1) Activities 
+        a) Which Park has this activity 
+        b) Where it is located
+   	2) Parks
+        a) which activities are available 
+        b) information on the park 
+        c) location / address / contact information 
+	3) Render API data to relevant html pages.
+
+    
+C) Styling  
+	1) display img on base route 
