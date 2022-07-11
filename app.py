@@ -3,7 +3,7 @@ from flask import Flask, render_template, flash ,get_flashed_messages, redirect,
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User
 from flask_debugtoolbar import DebugToolbarExtension
-from forms import RegisterForm, LogInForm
+from forms import RegisterForm, LogInForm, SearchForm
 
 app = Flask(__name__)
 
@@ -75,8 +75,9 @@ def list_users():
 @app.route('/<int:user_id>')
 def show_user(user_id):
     """show details about user based on user id"""
+    form = SearchForm()
     user = User.query.get_or_404(user_id)
-    return render_template('userdetail.html', user=user)
+    return render_template('userdetail.html', user=user, form=form)
     
 
 
