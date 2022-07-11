@@ -72,6 +72,14 @@ def list_users():
     return render_template("allusers.html", users=users)
 
 
+@app.route('/<int:user_id>')
+def show_user(user_id):
+    """show details about user based on user id"""
+    user = User.query.get_or_404(user_id)
+    return render_template('userdetail.html', user=user)
+    
+
+
 @app.route('/find', methods=['GET'])
 def find_function():
     """display form to search terms """
@@ -86,10 +94,6 @@ def display_parks():
 
 
     
-    
-
-
-
 
 
 @app.route('/logout')
