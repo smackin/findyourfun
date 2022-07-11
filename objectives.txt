@@ -13,6 +13,11 @@ A) ROUTES
 		  ii. render template to show user home page
 	   b) Store user id in session in order to access User Features. 
 	   c) 
+	3) User Home Route
+		a) display user information 
+			i) username, name, image, location. 
+		b) display form for search term box (/find)
+
 
 
 B)  API (figure out paths to display (API) )

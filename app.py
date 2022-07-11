@@ -65,16 +65,32 @@ def add_user():
         return render_template('register.html', form=form)
     
 
-@app.route('/user')
-def userpage():
-    """displays users homepage only if user in session"""
+@app.route('/user', methods=['GET'])
+def list_users():
+    """displays list of all users in db"""
+    users = User.query.all()
+    return render_template("allusers.html", users=users)
+
+
+@app.route('/find', methods=['GET'])
+def find_function():
+    """display form to search terms """
     
-    if "user_id" not in session:
-        flash("You must be logged in to access", "danger")    
-        return redirect('/login')
+    return render_template('find.html')
+
+@app.route('/park', methods =['GET'])
+def display_parks():
+    """display park data based on search term"""
     
-    else:
-        return render_template("user.html")
+    return render_template ('park.html')
+
+
+    
+    
+
+
+
+
 
 @app.route('/logout')
 def logout(): 
@@ -85,6 +101,4 @@ def logout():
     return redirect('/')
 
     
-# @app.route('user/login', methods=['GET', 'POST'])
-# def login_user():
     

@@ -11,6 +11,11 @@ bcrypt = Bcrypt()
 class User(db.Model): 
     """Site User"""
     __tablename__ = 'users'
+    
+    def __repr__(self):
+        u = self
+        return f"<User id={u.id} name={u.name} username={u.username}>"
+        
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text, nullable=False)
     username = db.Column(db.Text, nullable=False ,unique=True) 
@@ -42,6 +47,10 @@ class User(db.Model):
             return u
         else: 
             return False
+        
+    def greeting(self):
+        return f"Hey, welcome back {self.username}! "
+    
 
 class Parks(db.Model):
     """Parks"""
