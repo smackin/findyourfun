@@ -1,3 +1,13 @@
+route definitions 
+/register -- returns new instance of User with hashed pw.  Handles form validation 
+/login -- form to login existing User and authenticate 
+/userhome -- User can access after login.  Displays user info
+	/<int: user_id> -- used to display certain user info based on user_id query. 
+/find -- User can access after login.  Displays form to enter search term.  on submit ==> redirects to /park with given term 
+/park -- Displays park information based on search term 
+	/<int: park_id> -- used to display certain park info based on search term query 
+
+
 A) ROUTES 
 	1) Root Route 
 		a) landing page ('/') displays register and log in routes. (linked)
