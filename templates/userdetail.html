@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html'%}
+{% block content %}
+
     <title>{{user.name}}</title>
 </head>
 <body>
@@ -11,10 +8,10 @@
         {{user.greeting()}}
     </blockquote>
     <div> 
-        <p>{{user.username}} Details</p>
+        <p>{{user.username}}'s Bio</p>
     <ul>
         <li> Name : {{user.name}} </li>
-        <li> ID : {{user.id}} </li>
+        <!-- <li> ID : {{user.id}} </li> -->
         <li> Username : {{user.username}} </li>
         <li> Email : {{user.email}} </li>
         <li> Location : {{user.state}} </li>
@@ -22,7 +19,7 @@
     </div>
 
     <div>
-        <p>{{user.username}} Favorites!</p>
+        <p>{{user.username}}'s' Favorites!</p>
         <!-- Create UL of all users favorites -->
     </div>
 
@@ -41,8 +38,7 @@
             {{ error }}
             {% endfor %}
         </p>
-    
         {% endfor %}
-
-</body>
-</html>
+        <!-- add a button for this form submit -->
+        <a href="/park">Submit Form</a>
+{% endblock %}

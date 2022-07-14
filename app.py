@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User
 from flask_debugtoolbar import DebugToolbarExtension
 from forms import RegisterForm, LogInForm, SearchForm
+import requests as API_request
+import json
 
 app = Flask(__name__)
 
@@ -18,7 +20,7 @@ connect_db(app)
 
 @app.route('/')
 def home_page():
-    """displayes home page"""
+    """displays home page"""
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -77,6 +79,7 @@ def show_user(user_id):
     """show details about user based on user id"""
     form = SearchForm()
     user = User.query.get_or_404(user_id)
+    session['user_id'] = user.id
     return render_template('userdetail.html', user=user, form=form)
     
 
@@ -90,7 +93,16 @@ def find_function():
 @app.route('/park', methods =['GET'])
 def display_parks():
     """display park data based on search term"""
-    
+    url = "https://developer.nps.gov/api/v1/activities/parks?id=24380E3F-AD9D-4E38-BF13-C8EEB21893E7&api_key=b5SPZ9bRhqC2LZDBW0bvZjLlojSTZXCDSTctBS54"
+
+    payload={}
+    headers = {}
+
+    response = API_request.request("GET", url, headers=headers, data=payload)
+
+    print(response.text)
+    json_data = json.loads(response.text)
+    print(json_data.data)
     return render_template ('park.html')
 
 
