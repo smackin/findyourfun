@@ -37,7 +37,7 @@ def login():
         
         if user: 
             session['user_id'] = user.id #keep user logged in
-        return redirect('/user')
+        return redirect('/user/<int:user_id>')
     
     else:
         form.username.errors = ["incorrect name/ password"]    
@@ -74,7 +74,7 @@ def list_users():
     return render_template("allusers.html", users=users)
 
 
-@app.route('/<int:user_id>')
+@app.route('/user/<int:user_id>')
 def show_user(user_id):
     """show details about user based on user id"""
     form = SearchForm()
@@ -100,13 +100,11 @@ def display_parks():
 
     response = API_request.request("GET", url, headers=headers, data=payload)
 
-    print(response.text)
     json_data = json.loads(response.text)
-    print(json_data.data)
-    return render_template ('park.html')
-
-
-    
+    activity = json_data["data"][0]["name"]
+    parks = json_data["data"][0]["parks"]
+    # print(parks)
+    return render_template ('park.html', activity=activity,parks=parks)
 
 
 @app.route('/logout')

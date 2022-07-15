@@ -1,2 +1,28 @@
-<h1> This route displays park data </h1>
-<p> The park data displayed is based on the search term from the find route </p> 
+{% extends 'base.html'%}
+{% block content %}
+<style>
+body { background-color: black;
+}
+h2 { color: greenyellow;}
+container { text-align: center;
+
+}
+
+
+</style>
+
+<h2>Listed below are the parks where you can enjoy {{ activity }}</h2>
+
+{% for park in parks %}
+<div class="card text-center bg-success mb-3" style="width: 25rem;">
+<h5 class="card-header">{{ park['fullName'] }}</h5>
+<div class="card-body">
+    <p>State: {{ park['states'] }} </p>
+    <p>Designation: {{ park['designation'] }} </p>
+    <p>Park Code: {{ park['parkCode'] }} </p>
+    <a href="{{ park['url'] }}" target="_blank" class="btn btn-light"> {{ park['fullName'] }}</a>
+</div>
+</div>
+{% endfor %}
+
+{% endblock %}
