@@ -1,7 +1,6 @@
-from unicodedata import name
+
 from flask_wtf import FlaskForm
-from sqlalchemy import values
-from wtforms import StringField, FloatField, EmailField, PasswordField, SelectField, SearchField
+from wtforms import StringField, FloatField, PasswordField, SelectField
 from wtforms.validators import InputRequired
 
 states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
@@ -25,16 +24,16 @@ class LogInForm(FlaskForm):
     password = PasswordField("password")
 
 
-class RegisterForm(FlaskForm):
+class UserForm(FlaskForm):
     """Form for adding Users"""
     name = StringField("Your Name", validators=[InputRequired()])
-    password = PasswordField("Password", validators=[InputRequired()])
     username = StringField("Your Username", validators=[InputRequired()])
-    email = EmailField("Your Email", validators=[InputRequired()])
+    password = PasswordField("Password", validators=[InputRequired()])
+    email = StringField("Your Email", validators=[InputRequired()])
     state = SelectField('State', choices=[(st, st) for st in states])
     
 
-class SearchForm(FlaskForm):
+class DropDownForm(FlaskForm):
     # location = SearchField("Where do you want to go? ")
     activity = SelectField("Select and Activity", choices=[
             ("A59947B7-3376-49B4-AD02-C0423E08C5F7", "Camping"), 

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit User Profile</h2>
+
+<p>Thanks for visiting Find Your Fun. <br>
+The one stop for all of your outdoor adventure needs and wants.<br>
+Before we get started, lets find out more about you! </p>
+
+<form id="register-form" method="POST">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+
+    {% for field in form
+        if field.widget.input_type != 'hidden' %}
+
+    <p>
+        {{ field.label }}
+        {{ field }}
+
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    {% endfor %}
+
+    <button action="'/user/<int: uid>'" type="submit">Save</button>
+</form>
+
+{% endblock %}
