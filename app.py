@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Flask, render_template, flash ,get_flashed_messages, redirect, session, g, request
 from flask_sqlalchemy import SQLAlchemy
-from models import db, connect_db, User
+from models import db, connect_db, User, apiKey
 from flask_debugtoolbar import DebugToolbarExtension
 from forms import UserForm, LogInForm, DropDownForm
 import requests as API_request
@@ -40,7 +40,7 @@ def login():
         
         if user: 
             session['user_id'] = user.id #keep user logged in
-        return redirect('/<int:user_id>')
+        return redirect('/user/<int:uid>')
     
     else:
         form.username.errors = ["incorrect name/ password"]    
@@ -100,12 +100,17 @@ def edit_user(uid):
         return redirect('/user')
     return render_template("edituser.html", form=form)
 
-
+@app.route('/activity', methods=['POST'])
+def activity():
+    result = request.form
+    print(result)
+    print('TEST')
+    
 
 @app.route('/park', methods =['GET'])
 def display_parks():
     """display park data based on search term"""
-    url = "https://developer.nps.gov/api/v1/activities/parks?id=24380E3F-AD9D-4E38-BF13-C8EEB21893E7&api_key=b5SPZ9bRhqC2LZDBW0bvZjLlojSTZXCDSTctBS54"
+    url = f"https://developer.nps.gov/api/v1/activities/parks?id=24380E3F-AD9D-4E38-BF13-C8EEB21893E7&api_key={apiKey}"
 
     payload={}
     headers = {}

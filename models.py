@@ -8,6 +8,8 @@ db = SQLAlchemy()
 
 bcrypt = Bcrypt()
 
+apiKey = 'b5SPZ9bRhqC2LZDBW0bvZjLlojSTZXCDSTctBS54'
+
 class User(db.Model): 
     """Site User"""
     __tablename__ = 'users'

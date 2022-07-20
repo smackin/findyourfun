@@ -1,16 +1,15 @@
 {% extends 'base.html'%}
 {% block content %}
-
-{% block title %} 
-{{user.name}}
-{% endblock %} 
+<div class="container">
+{% block title %}{{user.name}}{% endblock %} 
+</div>
 <div class="container">
     <blockquote> 
         {{user.greeting()}}
     </blockquote>
 </div>
     <div class="container"> 
-        <p>{{user.username}}'s Bio</p>
+        <p>{{user.name}}'s Bio</p>
     <ul>
         <li> Name : {{user.name}} </li>
         <!-- <li> ID : {{user.id}} </li> -->
@@ -26,7 +25,7 @@
         <!-- Create UL of all users favorites -->
     </div>
     <div class="container">
-    <form id="search_form" method="POST">
+    <form action="activity" id="search_form" method="POST">
         <!-- Display form with Field to search Term for Park API  -->
         {{ form.hidden_tag() }} <!--add type=hidden form fields -->
     
@@ -43,22 +42,9 @@
         </p>
         {% endfor %}
 
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            What would you like to do?
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Camping</button>
-            <button class="dropdown-item" type="button">Fishing</button>
-            <button class="dropdown-item" type="button">Eat some Food</button>
-            <button class="dropdown-item" type="button">Find a Hike</button>
-            <button class="dropdown-item" type="button">Watch some Wildlife</button>
-            <button class="dropdown-item" type="button">Playgrounds</button>
-            <button class="dropdown-item" type="button">Shopping</button>
-            
-            </div>
-        </div>
+        
         <!-- add a button for this form submit -->
-        <a href="/park" class="btn btn-outline-primary btn-lg btn-block" >Submit Form</a>
-    </div>
+        <button type="submit" form="form1" class="btn btn-outline-primary btn-lg btn-block" value="Submit">Submit Form</button>
+    </form>
+</div>
 {% endblock %}
