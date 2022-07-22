@@ -1,4 +1,5 @@
 from crypt import methods
+from sre_constants import SUCCESS
 from flask import Flask, render_template, flash ,get_flashed_messages, redirect, session, g, request
 from flask_sqlalchemy import SQLAlchemy
 from models import db, connect_db, User, apiKey
@@ -40,12 +41,13 @@ def login():
         
         if user: 
             session['user_id'] = user.id #keep user logged in
-        return redirect('/user/<int:uid>')
+        return redirect('/user')
     
     else:
         form.username.errors = ["incorrect name/ password"]    
     
     return render_template('login.html', form=form)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def add_user(): 
@@ -77,7 +79,7 @@ def list_users():
     return render_template("allusers.html", users=users)
 
 
-@app.route('/user/<int:uid>', methods=['GET',"POST"])
+@app.route('/<int:uid>', methods=['GET',"POST"])
 def show_user(uid):
     """show details about user based on user id"""
     form = DropDownForm()
@@ -100,18 +102,45 @@ def edit_user(uid):
         return redirect('/user')
     return render_template("edituser.html", form=form)
 
+@app.route('/user/<int:uid>/delete', methods=['GET','POST'])
+def delete_user(uid):
+    """delete user profile"""
+    
+    u = User.query.get_or_404(uid)
+    
+    db.session.delete(u)
+    db.session.commit()
+    flash ('User Deleted', SUCCESS)
+    
+    return redirect('/users')
+    
 @app.route('/activity', methods=['POST'])
 def activity():
-    result = request.form
-    print(result)
-    print('TEST')
+    activity_id = request.form["activity"]
+    return redirect(f"/park/{activity_id}")
     
 
-@app.route('/park', methods =['GET'])
-def display_parks():
-    """display park data based on search term"""
-    url = f"https://developer.nps.gov/api/v1/activities/parks?id=24380E3F-AD9D-4E38-BF13-C8EEB21893E7&api_key={apiKey}"
+# @app.route('/park', methods =['GET'])
+# def display_parks():
+#     """display park data based on search term"""
+#     url = f"https://developer.nps.gov/api/v1/activities/parks?id=24380E3F-AD9D-4E38-BF13-C8EEB21893E7&api_key={apiKey}"
 
+#     payload={}
+#     headers = {}
+
+#     response = API_request.request("GET", url, headers=headers, data=payload)
+
+#     json_data = json.loads(response.text)
+#     activity = json_data["data"][0]["name"]
+#     parks = json_data["data"][0]["parks"]
+#     # print(parks)
+#     return render_template ('park.html', activity=activity,parks=parks)
+
+@app.route('/park/<string:activity_id>', methods=['GET'])
+def display_parks(activity_id):
+    """display park data based on selected search term """
+    url = f"https://developer.nps.gov/api/v1/activities/parks?id={activity_id}&api_key={apiKey}"
+    
     payload={}
     headers = {}
 
@@ -122,10 +151,8 @@ def display_parks():
     parks = json_data["data"][0]["parks"]
     # print(parks)
     return render_template ('park.html', activity=activity,parks=parks)
-
-@app.route('/park/parkid', methods=['GET'])
-
-
+    
+    
 @app.route('/logout')
 def logout(): 
     """log User out and redirects to homepage. """

@@ -1,15 +1,15 @@
 {% extends 'base.html'%}
 {% block content %}
 <div class="container">
-{% block title %}{{user.name}}{% endblock %} 
+    {% block title %}{{user.name}}{% endblock %}
 </div>
 <div class="container">
-    <blockquote> 
+    <blockquote>
         {{user.greeting()}}
     </blockquote>
 </div>
-    <div class="container"> 
-        <p>{{user.name}}'s Bio</p>
+<div class="container">
+    <p>{{user.name}}'s Bio</p>
     <ul>
         <li> Name : {{user.name}} </li>
         <!-- <li> ID : {{user.id}} </li> -->
@@ -18,33 +18,37 @@
         <li> Location : {{user.state}} </li>
     </ul>
     <p><a class="btn btn-sm btn-info" href="/user/{{user.id}}/edit">Edit Bio</a></p>
-    </div>
+    <form action="/user/{{user.id}}/delete" >
+        <button style="display: inline;" class=" btn btn-sm btn-danger ">Delete User</button>
+    </form>
+</div>
 
-    <div class="container">
-        <p>{{user.username}}'s' Favorites!</p>
-        <!-- Create UL of all users favorites -->
-    </div>
-    <div class="container">
-    <form action="activity" id="search_form" method="POST">
+<div class="container">
+    <p>{{user.username}}'s' Favorites!</p>
+    <!-- Create UL of all users favorites -->
+</div>
+<div class="container">
+    <form action="/activity" id="search_form" method="POST">
         <!-- Display form with Field to search Term for Park API  -->
-        {{ form.hidden_tag() }} <!--add type=hidden form fields -->
-    
+        {{ form.hidden_tag() }}
+        <!--add type=hidden form fields -->
+
         {% for field in form
             if field.widget.input_type != 'hidden' %}
-    
+
         <p>
             {{ field.label }}
             {{ field }}
-    
+
             {% for error in field.errors %}
             {{ error }}
             {% endfor %}
         </p>
         {% endfor %}
 
-        
+
         <!-- add a button for this form submit -->
-        <button type="submit" form="form1" class="btn btn-outline-primary btn-lg btn-block" value="Submit">Submit Form</button>
+        <button class="btn btn-outline-primary btn-lg btn-block">Submit Form</button>
     </form>
 </div>
 {% endblock %}
