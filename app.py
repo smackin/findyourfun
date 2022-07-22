@@ -41,11 +41,12 @@ def login():
         
         if user: 
             session['user_id'] = user.id #keep user logged in
+            flash("Welcome Back!")
         return redirect('/user')
     
     else:
         form.username.errors = ["incorrect name/ password"]    
-    
+    flash("You must be logged in to do that")
     return render_template('login.html', form=form)
 
 
@@ -99,7 +100,8 @@ def edit_user(uid):
         u.username = form.username.data
         u.password = form.password.data
         db.session.commit()
-        return redirect('/user')
+        flash("User Profile Updated")
+        return redirect('/user') 
     return render_template("edituser.html", form=form)
 
 @app.route('/user/<int:uid>/delete', methods=['GET','POST'])
@@ -110,9 +112,9 @@ def delete_user(uid):
     
     db.session.delete(u)
     db.session.commit()
-    flash ('User Deleted', SUCCESS)
+    flash ('User Deleted', 'success')
     
-    return redirect('/users')
+    return redirect('/register')
     
 @app.route('/activity', methods=['POST'])
 def activity():
@@ -158,7 +160,7 @@ def logout():
     """log User out and redirects to homepage. """
     
     session.pop("user_id")
-    
+    flash("You have logged out")
     return redirect('/')
 
     

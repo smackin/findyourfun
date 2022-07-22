@@ -18,7 +18,7 @@
         <li> Location : {{user.state}} </li>
     </ul>
     <p><a class="btn btn-sm btn-info" href="/user/{{user.id}}/edit">Edit Bio</a></p>
-    <form action="/user/{{user.id}}/delete" >
+    <form action="/user/{{user.id}}/delete" method="POST" >
         <button style="display: inline;" class=" btn btn-sm btn-danger ">Delete User</button>
     </form>
 </div>

@@ -44,4 +44,7 @@ class DropDownForm(FlaskForm):
             ("1DFACD97-1B9C-4F5A-80F2-05593604799E","Food"), 
             ("AE42B46C-E4B7-4889-A122-08FE180371AE","Fishing")])
     
+# class AddFavoriteForm():
+    
+    
 
