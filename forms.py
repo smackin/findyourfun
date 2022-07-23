@@ -35,7 +35,7 @@ class UserForm(FlaskForm):
 
 class DropDownForm(FlaskForm):
     # location = SearchField("Where do you want to go? ")
-    activity = SelectField("Select and Activity", choices=[
+    activity = SelectField("Select an Activity", choices=[
             ("A59947B7-3376-49B4-AD02-C0423E08C5F7", "Camping"), 
             ("7779241F-A70B-49BC-86F0-829AE332C708","Playground"), 
             ("0B685688-3405-4E2A-ABBA-E3069492EC50","Wildlife Watching"),

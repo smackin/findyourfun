@@ -58,24 +58,25 @@ class Parks(db.Model):
     __tablename__ = "parks"
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.Text, nullable=False)
-    location = db.Column(db.Text, nullable=False)
-    url = db.Column(db.Text)
-    activities = db.Column(db.Text)
+    parkCode = db.Column(db.Text, nullable=False)
     
-class Activities(db.Model): 
-    """Activities sorted by Park"""
-    __tablename__ = "activities"
-    id = db.Column(db.Integer, primary_key=True)
-    Name = db.Column(db.Text, nullable=False)
-    location = db.Column(db.Text, nullable=False)
-    park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
+
+    
+# class Activities(db.Model): 
+#     """Activities sorted by Park"""
+#     __tablename__ = "activities"
+#     id = db.Column(db.Integer, primary_key=True)
+#     Name = db.Column(db.Text, nullable=False)
+#     location = db.Column(db.Text, nullable=False)
+#     park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
     
 class Favorites(db.Model):
     """users favorites"""
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     Name = db.Column(db.Text, nullable = False)
-    park_id = db.Column(db.Integer, db.ForeignKey('parks.id'))
+    park_code = db.Column(db.Text, db.ForeignKey('parks.id'))
+    url = db.Column(db.Text, nullable=False)
 
 
 def connect_db(app):

@@ -17,9 +17,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = "gotasecret333"
 
 
-
 connect_db(app)
-
 
 @app.route('/', methods=['GET'])
 def home_page():
@@ -45,8 +43,8 @@ def login():
         return redirect('/user')
     
     else:
-        form.username.errors = ["incorrect name/ password"]    
-    flash("You must be logged in to do that")
+        # form.username.errors = ["incorrect name/ password"]    
+        flash("You must be logged in to do that")
     return render_template('login.html', form=form)
 
 
@@ -68,7 +66,7 @@ def add_user():
         
         session['user_id'] = user.id
         # flash (f'Created new User {username}, welcome {name}')
-        return redirect('/user')
+        return render_template('userdetail.html', user=user, form=form, user_id=user.id)
     else:
         return render_template('register.html', form=form)
     
@@ -159,9 +157,14 @@ def display_parks(activity_id):
 def logout(): 
     """log User out and redirects to homepage. """
     
-    session.pop("user_id")
+    session.clear()
     flash("You have logged out")
     return redirect('/')
 
+
+#  data.park['parkCode']  
+#  park['url']  
+# add an array,  push park code into an array.  loop over and display favrotires 
+# form submit.  wrap all in  a form 
     
     

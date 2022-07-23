@@ -1,26 +1,30 @@
 {% extends 'base.html'%}
 {% block content %}
-<style>
+<!-- <style>
 body { background-color: black;
 }
 h2 { color: greenyellow;}
 container { text-align: center;
 
-}
+} -->
 
 
-</style>
-
-<h2>Listed below are the parks where you can enjoy {{ activity }}</h2>
+<h2 class="mx-auto">Listed below are the parks where you can enjoy {{ activity }}</h2>
 
 {% for park in parks %}
-<div class="card text-center bg-success mb-3" style="width: 25rem;">
+<div class="card text-center bg-success mb-3 mx-auto" style=" width: 25rem;">
 <h5 class="card-header">{{ park['fullName'] }}</h5>
 <div class="card-body">
     <p>State: {{ park['states'] }} </p>
     <p>Designation: {{ park['designation'] }} </p>
     <p>Park Code: {{ park['parkCode'] }} </p>
     <a href="{{ park['url'] }}" target="_blank" class="btn btn-light"> {{ park['fullName'] }}</a>
+    <!-- <button>Favorite</button> -->
+    <!-- data.park['parkCode']  
+    park['url']  
+add an array,  push park code into an array.  loop over and display favrotires 
+form submit.  wrap all in  a form  -->
+
 </div>
 </div>
 {% endfor %}
