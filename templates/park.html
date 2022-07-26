@@ -4,11 +4,12 @@
 
 <h2 class="text-center"> Listed below are the parks where you can enjoy {{ activity }}</h2>
 
-{% for park in parks %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <div class="card">
+{% for park in parks %}
+        <div class="col-lg-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://images.unsplash.com/photo-1567978207507-5795f5529167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzN8fG91dGRvb3JzfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="card-img-top">
                 <div class="card-body text-center">
                 <h5 class="card-title">{{ park['fullName'] }}</h5>
                 <p>State: {{ park['states'] }} </p>
