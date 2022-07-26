@@ -21,7 +21,7 @@ connect_db(app)
 
 @app.route('/', methods=['GET'])
 def home_page():
-    """displays home page"""
+    """displays home page""" 
     
     return render_template('index.html')
 
@@ -39,7 +39,7 @@ def login():
         
         if user: 
             session['user_id'] = user.id #keep user logged in
-            flash("Welcome Back!")
+        flash("Welcome Back!", "Success")
         return redirect('/user')
     
     else:
@@ -65,7 +65,7 @@ def add_user():
         db.session.commit()
         
         session['user_id'] = user.id
-        # flash (f'Created new User {username}, welcome {name}')
+        flash(f"Created new User {{username}}, welcome ${name}")
         return render_template('userdetail.html', user=user, form=form, user_id=user.id)
     else:
         return render_template('register.html', form=form)
@@ -98,7 +98,7 @@ def edit_user(uid):
         u.username = form.username.data
         u.password = form.password.data
         db.session.commit()
-        flash("User Profile Updated")
+        flash("User Profile Updated", "success")
         return redirect('/user') 
     return render_template("edituser.html", form=form)
 
@@ -110,7 +110,7 @@ def delete_user(uid):
     
     db.session.delete(u)
     db.session.commit()
-    flash ('User Deleted', 'success')
+    flash ('User Deleted', 'warning')
     
     return redirect('/register')
     
@@ -156,9 +156,9 @@ def display_parks(activity_id):
 @app.route('/logout')
 def logout(): 
     """log User out and redirects to homepage. """
-    
+
     session.clear()
-    flash("You have logged out")
+    flash(u"You have logged out", "info")
     return redirect('/')
 
 

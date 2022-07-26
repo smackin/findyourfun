@@ -1,26 +1,115 @@
 {% extends 'base.html' %}
+{% block title %}Login{%endblock%}
 {% block content %}
-<h1>Hey there!</h1>
 
-<p> We're so glad you're back! Login below. </p>
-<form id="login_form" method="POST">
+
+<style>
+    *{
+        padding: 0; 
+        margin: 0; 
+        box-sizing: border-box;
+        box-shadow: 7em;
+    }
+
+    body{ 
+        background-color: aliceblue;
+    }
+
+    .row{
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    img{ border-top-left-radius: 25px ;
+        border-bottom-left-radius: 25px ;
+        height:100%;
+    }
+
+    .btn1 {
+        border: none;
+        outline: none; 
+        height: 40px; 
+        width: 50%;
+        background-color: black;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    
+    .btn1:hover{
+        background-color: white;
+        color:black;
+        font-weight: bold;
+        border: 2px solid black;
+    }
+</style>
+<!-- <div class="container">
+    
+<h1 class="text-center">Hey there!</h1>
+
+<div class="class="col-md-6 offset-md-3">
+    We're so glad you're back! Login below. 
+</div>
+<form method="POST">
     {{ form.hidden_tag() }} <!--add type=hidden form fields -->
-
+<!-- 
     {% for field in form
         if field.widget.input_type != 'hidden' %}
 
-    <p>
+        
         {{ field.label }}
         {{ field }}
 
         {% for error in field.errors %}
         {{ error }}
         {% endfor %}
-    </p>
+    </div>
 
-    {% endfor %}
+    {% endfor %} --> 
 
-    <button type="submit">Submit</button>
-</form>
+<section class="form my-4 mx-5">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-5">
+                <img src="https://images.unsplash.com/photo-1465311354905-789ff5f7a457?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bG9nJTIwaW58ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" class="img-fluid "alt="login" >
+            </div>
+            <div class="col-lg-7 px-7">
+            <h2 class="font-weight-bold p-4">FindYourFun</h2>
+            <h4 class="px-4">Sign into your account</h4>
+            <form method="POST" action="">
+                <div class="form-row">
+                    <div class="col-lg-7 px-5">
+                        {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+
+                        {% for field in form
+                            if field.widget.input_type != 'hidden' %}
+                    
+                            
+                            {{ field.label }}
+                            {{ field }}
+                            <br>
+
+                            {% for error in field.errors %}
+                            {{ error }}
+                            {% endfor %}
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                
+                <button type="submit" class="btn1 my-4 mx-5">Login</button> <br>
+                <br>
+                <br>
+                <div class="my-4 mx-5">
+                <a href="/">Forgot Password?</a> <br>
+                <p>Don't have an account? <a href="/register">Register Here</a></p>
+            </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
 
 {% endblock %}

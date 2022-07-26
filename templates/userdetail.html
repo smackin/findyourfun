@@ -4,9 +4,9 @@
     {% block title %}{{user.name}}{% endblock %}
 </div>
 <div class="container">
-    <blockquote>
+    <p>
         {{user.greeting()}}
-    </blockquote>
+    </p>
 </div>
 <div class="container">
     <p>{{user.name}}'s Bio</p>
@@ -17,10 +17,12 @@
         <li> Email : {{user.email}} </li>
         <li> Location : {{user.state}} </li>
     </ul>
-    <p><a class="btn btn-sm btn-info" href="/user/{{user.id}}/edit">Edit Bio</a></p>
+<p class="container">
+        <a class="btn btn-sm btn-info" href="/user/{{user.id}}/edit">Edit Bio</a>
     <form action="/user/{{user.id}}/delete" method="POST" >
         <button style="display: inline;" class=" btn btn-sm btn-danger ">Delete User</button>
     </form>
+</p>
 </div>
 
 <!-- <div class="container">
