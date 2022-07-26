@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
+{% if 'user_id' in session %}
 <div class="container">
     {% block title %}{{user.name}}{% endblock %}
 </div>
@@ -58,4 +59,10 @@
         <button class="btn btn-outline-primary btn-lg btn-lg">Submit Form</button>
     </form>
 </div>
+{% endif %}
+
+{% if 'user_id' not in session %}
+<h1> You must be logged in to view this page. </h1>
+{% endif %}
+
 {% endblock %}

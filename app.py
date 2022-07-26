@@ -40,7 +40,7 @@ def login():
         if user: 
             session['user_id'] = user.id #keep user logged in
         flash("Welcome Back!", "Success")
-        return redirect('/user')
+        return render_template('userdetail.html', user=user, form=form)
     
     else:
         # form.username.errors = ["incorrect name/ password"]    

@@ -5,16 +5,16 @@
 <h2 class="text-center"> All users </h2>
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-center">
         {% for user in users %}
-        <div class="col-6 text-center">
+        <div class="col-3 justify-content-center">
             <div class="card" >
                 <img src="https://images.unsplash.com/photo-1599460546755-ec4b6b7132a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjJ8fGhhcHB5fGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="card-img-top">
                 <div class="card-body text-center">
                     <h5 class="card-title">{{user.username}}</h5>
-                    <p> {{ user.name }} </p>
-                    <p> {{user.email}} </p>
-                    <a href="/{{user.id}}" target="_blank" class="btn btn-info"> Visit </a>
+                    <p class=" card-text"> {{ user.name }} </p>
+                    <p class=" card-text"> {{user.email}} </p>
+                    <a href="/{{user.id}}" target="_blank" class=".card-link"> Visit </a>
                 </div>
             </div>
         </div>
