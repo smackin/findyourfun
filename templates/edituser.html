@@ -1,29 +1,92 @@
 {% extends 'base.html' %}
+{% block title %}Edit User{%endblock%}
 {% block content %}
-<h2>Edit User Profile</h2>
 
-<p>Thanks for visiting Find Your Fun. <br>
-The one stop for all of your outdoor adventure needs and wants.<br>
-Before we get started, lets find out more about you! </p>
+<div class="container">
+    
+</div>
 
-<form id="register-form" method="POST">
-    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+<style>
+    *{
+        padding: 0; 
+        margin: 0; 
+        box-sizing: border-box;
+        box-shadow: 7em;
+    }
 
-    {% for field in form
-        if field.widget.input_type != 'hidden' %}
+    body{ 
+        background-color: aliceblue;
+    }
 
-    <p>
-        {{ field.label }}
-        {{ field }}
+    .row{
+        background-color: white;
+        border-radius: 25px;
+    }
 
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-    </p>
+    img{ border-top-left-radius: 25px ;
+        border-bottom-left-radius: 25px ;
+        height:100%;
+    }
 
-    {% endfor %}
+    .btn1 {
+        border: none;
+        outline: none; 
+        height: 40px; 
+        width: 50%;
+        background-color: black;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    
+    .btn1:hover{
+        background-color: white;
+        color:black;
+        font-weight: bold;
+        border: 2px solid black;
+    }
+</style>
 
-    <button action="'/user/<int: uid>'" type="submit">Save</button>
-</form>
+
+<section class="form my-4 mx-5">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-5">
+                <img src="https://images.unsplash.com/photo-1533609028530-0776dc5ba7f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGVkaXQlMjB1c2VyfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="img-fluid "alt="login" >
+            </div>
+            <div class="col-lg-7 px-7">
+            <h2 class="font-weight-bold p-4">Update your Profile</h2>
+            <h4 class="px-4"> You are about to edit your user profile.  Make sure to hit the save button or your changes will be lost. </h4>
+            <form method="POST" action="">
+                <div class="form-row">
+                    <div class="col-lg-7 px-5">
+                        {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+
+                        {% for field in form
+                            if field.widget.input_type != 'hidden' %}
+                    
+                            
+                            {{ field.label }}
+                            {{ field }}
+                            <br>
+
+                            {% for error in field.errors %}
+                            {{ error }}
+                            {% endfor %}
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button class="btn1" action="/{user.id}" type="submit">Save User</button>
+                    <button class="btn1" action="'/user/{user.id}/delete'" type="submit">Delete User</button>
+                <br>
+                <br>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
 
 {% endblock %}

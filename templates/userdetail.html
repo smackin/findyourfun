@@ -31,8 +31,6 @@
 {% endif %}
 
 {% if 'user_id' in session %}
-
-
 <section class="form my-4 mx-5">
     <div class="container">
         <div class="row no-gutters">
@@ -62,14 +60,14 @@
                             <!--add type=hidden form fields -->
                             {% for field in form
                                 if field.widget.input_type != 'hidden' %}
-                            <p class=" py-5">
+                            <h3 class=" py-5">
                                 {{ field.label }}
                                 {{ field }}
                     
                                 {% for error in field.errors %}
                                 {{ error }}
                                 {% endfor %}
-                            </p>
+                            </h3>
                             {% endfor %}
                             <!-- add a button for this form submit -->
                             <button class="btn btn-primary btn-sm">Submit Form</button>

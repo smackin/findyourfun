@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, FloatField, PasswordField, SelectField
+from wtforms import StringField, FloatField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import InputRequired
 
 states = [ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
@@ -31,6 +31,7 @@ class UserForm(FlaskForm):
     password = PasswordField("Password", validators=[InputRequired()])
     email = StringField("Your Email", validators=[InputRequired()])
     state = SelectField('State', choices=[(st, st) for st in states])
+
     
 
 class DropDownForm(FlaskForm):

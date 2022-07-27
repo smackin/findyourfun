@@ -2,19 +2,58 @@
 {% block title %}Park Finder{%endblock%}
 {% block content %}
 
-<h2 class="text-center"> Listed below are the parks where you can enjoy {{ activity }}</h2>
+<style>
 
-<div class="container-fluid">
+    body {
+        background-image: url("https://images.unsplash.com/photo-1600807497639-3b5d8e74a232?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aGlraW5nfGVufDB8MXwwfHw%3D&auto=format&fit=crop&w=400&q=60");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        background-size: contain;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    
+    .row {
+    display: inline;
+    grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+    gap : 1rem
+} 
+
+    h2 { 
+        color: aliceblue;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+        width: 800px;
+        height: auto;
+        margin:auto;
+        font-weight: 600;
+        position: center left;
+    }
+</style>
+<div class="container">
+    <h2 class="text-center"> Listed below are the parks where <br>
+        you can enjoy {{ activity }}</h2>
+</div>
+
+
+<div class="container">
     <div class="row">
-{% for park in parks %}
-        <div class="col-lg-4">
+        {% for park in parks %}
             <div class="card" style="width: 18rem;">
-                <img src="https://images.unsplash.com/photo-1567978207507-5795f5529167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzN8fG91dGRvb3JzfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=400&q=60" class="card-img-top">
+                <div class="col-4 mx-3 my-3"></div>
+                <img src="https://www.nps.gov/articles/images/NPS-Transparent-Logo.png" style="width:60px;height:60px;" class="card-img-top">
                 <div class="card-body text-center">
-                <h5 class="card-title">{{ park['fullName'] }}</h5>
-                <p>State: {{ park['states'] }} </p>
+                <h5 class="card-title">{{ park['fullName'] }} </h5>
+                <p>State: {{ park['states'] }} Park Code: {{ park['parkCode'] }}</p>
                 <p>Designation: {{ park['designation'] }} </p>
-                <p>Park Code: {{ park['parkCode'] }} </p>
+                <p> </p>
                 <a href="{{ park['url'] }}" target="_blank" class="btn btn-info"> Let's Go!</a>
             </div>
         </div>

@@ -50,7 +50,7 @@ class User(db.Model):
             return False
         
     def greeting(self):
-        return f"Hey, welcome back {self.username}! "
+        return f"Welcome back {self.username}! "
     
 
 class Parks(db.Model):

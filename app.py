@@ -1,4 +1,5 @@
 from crypt import methods
+from email.mime import image
 from sre_constants import SUCCESS
 from flask import Flask, render_template, flash ,get_flashed_messages, redirect, session, g, request
 from flask_sqlalchemy import SQLAlchemy
@@ -40,7 +41,7 @@ def login():
         if user: 
             session['user_id'] = user.id #keep user logged in
         flash("Welcome Back!", "Success")
-        return render_template('userdetail.html', user=user, form=form)
+        return redirect ('/user')
     
     else:
         # form.username.errors = ["incorrect name/ password"]    
@@ -52,6 +53,7 @@ def login():
 def add_user(): 
     """Register user - display form and handle form submission"""
     form = UserForm()
+    f2 = DropDownForm()
     
     if form.validate_on_submit():
         name = form.name.data
@@ -59,14 +61,15 @@ def add_user():
         password = form.password.data
         email = form.email.data
         state = form.state.data
+
         
         user=  User.register(name, username, password, email, state)
         db.session.add(user)
         db.session.commit()
         
         session['user_id'] = user.id
-        flash(f"Created new User {{username}}, welcome ${name}")
-        return render_template('userdetail.html', user=user, form=form, user_id=user.id)
+        flash(f"Created new User, Welcome {username}")
+        return redirect ('/')
     else:
         return render_template('register.html', form=form)
     
@@ -159,7 +162,7 @@ def logout():
 
     session.clear()
     flash(u"You have logged out", "info")
-    return redirect('/')
+    return render_template('logout.html')
 
 
 #  data.park['parkCode']  
