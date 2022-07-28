@@ -41,7 +41,7 @@ def login():
         if user: 
             session['user_id'] = user.id #keep user logged in
         flash("Welcome Back!", "Success")
-        return redirect ('/user')
+        return redirect (f'/home/{user.id}')
     
     else:
         # form.username.errors = ["incorrect name/ password"]    
@@ -69,7 +69,7 @@ def add_user():
         
         session['user_id'] = user.id
         flash(f"Created new User, Welcome {username}")
-        return redirect ('/')
+        return redirect (f'/home/{user.id}')
     else:
         return render_template('register.html', form=form)
     
@@ -81,7 +81,7 @@ def list_users():
     return render_template("allusers.html", users=users)
 
 
-@app.route('/<int:uid>', methods=['GET',"POST"])
+@app.route('/home/<int:uid>', methods=['GET',"POST"])
 def show_user(uid):
     """show details about user based on user id"""
     form = DropDownForm()
